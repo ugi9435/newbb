@@ -1,0 +1,2533 @@
+<!DOCTYPE html>
+
+<html
+  lang="en"
+  class="light-style layout-navbar-fixed layout-menu-fixed"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../../assets/"
+  data-template="vertical-menu-template">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Vertical Layouts - Forms | Vuexy - Bootstrap Admin Template</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap"
+      rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" />
+    <link rel="stylesheet" href="../../assets/vendor/fonts/tabler-icons.css" />
+    <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="../../assets/vendor/libs/select2/select2.css" />
+
+    <!-- Page CSS -->
+    <!-- <link rel="stylesheet" href="../../scss/bootstrap-steps.scss" /> -->
+    <link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap is required -->
+    <link  href="https://cdn.jsdelivr.net/npm/bootstrap-steps@%5E1.0/dist/bootstrap-steps.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css">
+    
+    <!-- Helpers -->
+    <script src="../../assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+    <script src="../../assets/vendor/js/template-customizer.js"></script>
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="../../assets/js/config.js"></script>
+    <style>
+      .step-circle::before{
+        width: 6.5rem;
+      }
+
+      .imgSetup{
+        max-width: 500px;
+      }
+
+      .imgSetupTwo{
+        max-width: 400px;
+      }
+
+      .textSetup{
+        font-size: 1.8rem;
+      }
+
+      .columnSetup{
+        min-width: 60px;
+      }
+
+      #shakeImg {
+        animation: tilt-shaking 0.3s infinite;
+      }
+      
+      @keyframes tilt-shaking {
+        0% { transform: rotate(0deg); }
+        25% { transform: rotate(5deg); }
+        50% { transform: rotate(0eg); }
+        75% { transform: rotate(-5deg); }
+        100% { transform: rotate(0deg); }
+      }
+    </style>
+    <script>
+      // const TW_CITY = [
+      //   '台北市', '基隆市', '新北市', '宜蘭縣', '桃園市', '新竹市', '新竹縣', '苗栗縣',
+      //   '台中市', '彰化縣', '南投縣', '嘉義市', '嘉義縣', '雲林縣', '台南市', '高雄市',
+      //   '澎湖縣', '金門縣', '屏東縣', '台東縣', '花蓮縣', '連江縣'
+      // ];
+
+      function westernToTaiwanCalender(birthday){
+          let strDate;
+          console.log("typeof(birthday):" + typeof(birthday) );
+          console.log("birthday:" + birthday );
+          let arrDay = birthday.split("-");
+          console.log("typeof(arrDay):" + typeof(arrDay) );
+          console.log("arrDay:" + arrDay );
+          // let strDate = (parseInt(arrDay[0]) -1911).toString() + "/" + arrDay[1].toString()+ "/" + arrDay[2].toString();
+          let DDD = parseInt(arrDay[0]) ;
+          console.log("DDD:" + DDD );
+          console.log("typeof(DDD):" + typeof(DDD) );
+          let deterYear =  DDD < 2011 ;
+          console.log(" deterYear:" + deterYear );
+          if( deterYear ){
+            strDate = '0' + (parseInt(arrDay[0]) -1911).toString() + arrDay[1].toString() + arrDay[2].toString();
+          }else{
+            strDate = (parseInt(arrDay[0]) -1911).toString() + arrDay[1].toString() + arrDay[2].toString();
+          }
+          // let strDate = (parseInt(arrDay[0]) -1911).toString() + arrDay[1].toString() + arrDay[2].toString();
+          console.log("typeof(strDate):" + typeof(strDate) );
+          console.log("strDate:" + strDate );
+          return strDate;
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="index.html" class="app-brand-link">
+              <span class="app-brand-logo demo">
+                <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
+                    fill="#7367F0" />
+                  <path
+                    opacity="0.06"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
+                    fill="#161616" />
+                  <path
+                    opacity="0.06"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
+                    fill="#161616" />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
+                    fill="#7367F0" />
+                </svg>
+              </span>
+              <span class="app-brand-text demo menu-text fw-bold">Vuexy</span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+              <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+              <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <!-- Dashboards -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div data-i18n="通用評分卡">通用評分卡</div>
+                <!-- <div class="badge bg-primary rounded-pill ms-auto">3</div> -->
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="b2bHomeView.html" class="menu-link">
+                    <div data-i18n="評分試算">評分試算</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="dashboards-crm.html" class="menu-link">
+                    <div data-i18n="簡訊發送通知">簡訊發送通知</div>
+                  </a>
+                </li>
+                <!-- <li class="menu-item">
+                  <a href="dashboards-ecommerce.html" class="menu-link">
+                    <div data-i18n="eCommerce">eCommerce</div>
+                  </a>
+                </li> -->
+              </ul>
+            </li>
+
+            <!-- Layouts -->
+            <!-- <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-layout-sidebar"></i>
+                <div data-i18n="Layouts">Layouts</div>
+              </a>
+
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="layouts-collapsed-menu.html" class="menu-link">
+                    <div data-i18n="Collapsed menu">Collapsed menu</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-content-navbar.html" class="menu-link">
+                    <div data-i18n="Content navbar">Content navbar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-content-navbar-with-sidebar.html" class="menu-link">
+                    <div data-i18n="Content nav + Sidebar">Content nav + Sidebar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../horizontal-menu-template" class="menu-link" target="_blank">
+                    <div data-i18n="Horizontal">Horizontal</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-without-menu.html" class="menu-link">
+                    <div data-i18n="Without menu">Without menu</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-without-navbar.html" class="menu-link">
+                    <div data-i18n="Without navbar">Without navbar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-fluid.html" class="menu-link">
+                    <div data-i18n="Fluid">Fluid</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-container.html" class="menu-link">
+                    <div data-i18n="Container">Container</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="layouts-blank.html" class="menu-link">
+                    <div data-i18n="Blank">Blank</div>
+                  </a>
+                </li>
+              </ul>
+            </li> -->
+
+            <!-- Apps & Pages -->
+            <!-- <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Apps &amp; Pages</span>
+            </li>
+            <li class="menu-item">
+              <a href="app-email.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-mail"></i>
+                <div data-i18n="Email">Email</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="app-chat.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-messages"></i>
+                <div data-i18n="Chat">Chat</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="app-calendar.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-calendar"></i>
+                <div data-i18n="Calendar">Calendar</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="app-kanban.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-layout-kanban"></i>
+                <div data-i18n="Kanban">Kanban</div>
+              </a>
+            </li> -->
+            <!-- e-commerce-app menu start -->
+            <!-- <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-building-factory-2"></i>
+                <div data-i18n="eCommerce">eCommerce</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Products">Products</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="app-ecommerce-product-list.html" class="menu-link">
+                        <div data-i18n="Product list">Product list</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-product-add.html" class="menu-link">
+                        <div data-i18n="Add Product">Add Product</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-category-list.html" class="menu-link">
+                        <div data-i18n="Category list">Category List</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Order">Order</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="app-ecommerce-order-list.html" class="menu-link">
+                        <div data-i18n="Order list">Order list</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-order-details.html" class="menu-link">
+                        <div data-i18n="Order Details">Order Details</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Customer">Customer</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="app-ecommerce-customer-all.html" class="menu-link">
+                        <div data-i18n="All Customers">All Customers</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <div data-i18n="Customer Details">Customer Details</div>
+                      </a>
+                      <ul class="menu-sub">
+                        <li class="menu-item">
+                          <a href="app-ecommerce-customer-details-overview.html" class="menu-link">
+                            <div data-i18n="Overview">Overview</div>
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="app-ecommerce-customer-details-security.html" class="menu-link">
+                            <div data-i18n="Security">Security</div>
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="app-ecommerce-customer-details-billing.html" class="menu-link">
+                            <div data-i18n="Address & Billing">Address & Billing</div>
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="app-ecommerce-customer-details-notifications.html" class="menu-link">
+                            <div data-i18n="Notifications">Notifications</div>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="app-ecommerce-manage-reviews.html" class="menu-link">
+                    <div data-i18n="Manage reviews">Manage reviews</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-ecommerce-referral.html" class="menu-link">
+                    <div data-i18n="Referrals">Referrals</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Settings">Settings</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-detail.html" class="menu-link">
+                        <div data-i18n="Store details">Store details</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-payments.html" class="menu-link">
+                        <div data-i18n="Payments">Payments</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-checkout.html" class="menu-link">
+                        <div data-i18n="Checkout">Checkout</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-shipping.html" class="menu-link">
+                        <div data-i18n="Shipping & delivery">Shipping & delivery</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-locations.html" class="menu-link">
+                        <div data-i18n="Locations">Locations</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-ecommerce-settings-notifications.html" class="menu-link">
+                        <div data-i18n="Notifications">Notifications</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li> -->
+            <!-- e-commerce-app menu end -->
+            <!-- Academy menu start -->
+            <!-- <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-book"></i>
+                <div data-i18n="Academy">Academy</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-academy-overview.html" class="menu-link">
+                    <div data-i18n="Overview">Overview</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-academy-course.html" class="menu-link">
+                    <div data-i18n="My Course">My Course</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-academy-course-details.html" class="menu-link">
+                    <div data-i18n="Course Details">Course Details</div>
+                  </a>
+                </li>
+              </ul>
+            </li> -->
+            <!-- Academy menu end -->
+            <!-- <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-truck"></i>
+                <div data-i18n="Logistics">Logistics</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-logistics-overview.html" class="menu-link">
+                    <div data-i18n="Overview">Overview</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-logistics-fleet.html" class="menu-link">
+                    <div data-i18n="Fleet">Fleet</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-file-dollar"></i>
+                <div data-i18n="Invoice">Invoice</div>
+                <div class="badge bg-danger rounded-pill ms-auto">4</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-invoice-list.html" class="menu-link">
+                    <div data-i18n="List">List</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-invoice-preview.html" class="menu-link">
+                    <div data-i18n="Preview">Preview</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-invoice-edit.html" class="menu-link">
+                    <div data-i18n="Edit">Edit</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-invoice-add.html" class="menu-link">
+                    <div data-i18n="Add">Add</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-users"></i>
+                <div data-i18n="Users">Users</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-user-list.html" class="menu-link">
+                    <div data-i18n="List">List</div>
+                  </a>
+                </li>
+
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="View">View</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="app-user-view-account.html" class="menu-link">
+                        <div data-i18n="Account">Account</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-user-view-security.html" class="menu-link">
+                        <div data-i18n="Security">Security</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-user-view-billing.html" class="menu-link">
+                        <div data-i18n="Billing & Plans">Billing & Plans</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-user-view-notifications.html" class="menu-link">
+                        <div data-i18n="Notifications">Notifications</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="app-user-view-connections.html" class="menu-link">
+                        <div data-i18n="Connections">Connections</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-settings"></i>
+                <div data-i18n="Roles & Permissions">Roles & Permissions</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="app-access-roles.html" class="menu-link">
+                    <div data-i18n="Roles">Roles</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="app-access-permission.html" class="menu-link">
+                    <div data-i18n="Permission">Permission</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-file"></i>
+                <div data-i18n="Pages">Pages</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="User Profile">User Profile</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="pages-profile-user.html" class="menu-link">
+                        <div data-i18n="Profile">Profile</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-profile-teams.html" class="menu-link">
+                        <div data-i18n="Teams">Teams</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-profile-projects.html" class="menu-link">
+                        <div data-i18n="Projects">Projects</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-profile-connections.html" class="menu-link">
+                        <div data-i18n="Connections">Connections</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Account Settings">Account Settings</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="pages-account-settings-account.html" class="menu-link">
+                        <div data-i18n="Account">Account</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-account-settings-security.html" class="menu-link">
+                        <div data-i18n="Security">Security</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-account-settings-billing.html" class="menu-link">
+                        <div data-i18n="Billing & Plans">Billing & Plans</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-account-settings-notifications.html" class="menu-link">
+                        <div data-i18n="Notifications">Notifications</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-account-settings-connections.html" class="menu-link">
+                        <div data-i18n="Connections">Connections</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-faq.html" class="menu-link">
+                    <div data-i18n="FAQ">FAQ</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="pages-pricing.html" class="menu-link">
+                    <div data-i18n="Pricing">Pricing</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Misc">Misc</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="pages-misc-error.html" class="menu-link" target="_blank">
+                        <div data-i18n="Error">Error</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-misc-under-maintenance.html" class="menu-link" target="_blank">
+                        <div data-i18n="Under Maintenance">Under Maintenance</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-misc-comingsoon.html" class="menu-link" target="_blank">
+                        <div data-i18n="Coming Soon">Coming Soon</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="pages-misc-not-authorized.html" class="menu-link" target="_blank">
+                        <div data-i18n="Not Authorized">Not Authorized</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-files"></i>
+                <div data-i18n="Front Pages">Front Pages</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="../front-pages/landing-page.html" class="menu-link" target="_blank">
+                    <div data-i18n="Landing">Landing</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../front-pages/pricing-page.html" class="menu-link" target="_blank">
+                    <div data-i18n="Pricing">Pricing</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../front-pages/payment-page.html" class="menu-link" target="_blank">
+                    <div data-i18n="Payment">Payment</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../front-pages/checkout-page.html" class="menu-link" target="_blank">
+                    <div data-i18n="Checkout">Checkout</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../front-pages/help-center-landing.html" class="menu-link" target="_blank">
+                    <div data-i18n="Help Center">Help Center</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-lock"></i>
+                <div data-i18n="Authentications">Authentications</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Login">Login</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-login-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Register">Register</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-register-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-register-multisteps.html" class="menu-link" target="_blank">
+                        <div data-i18n="Multi-steps">Multi-steps</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Verify Email">Verify Email</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-verify-email-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-verify-email-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Reset Password">Reset Password</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-reset-password-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-reset-password-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Forgot Password">Forgot Password</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-forgot-password-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Two Steps">Two Steps</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="auth-two-steps-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="auth-two-steps-cover.html" class="menu-link" target="_blank">
+                        <div data-i18n="Cover">Cover</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-forms"></i>
+                <div data-i18n="Wizard Examples">Wizard Examples</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="wizard-ex-checkout.html" class="menu-link">
+                    <div data-i18n="Checkout">Checkout</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="wizard-ex-property-listing.html" class="menu-link">
+                    <div data-i18n="Property Listing">Property Listing</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="wizard-ex-create-deal.html" class="menu-link">
+                    <div data-i18n="Create Deal">Create Deal</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="modal-examples.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-square"></i>
+                <div data-i18n="Modal Examples">Modal Examples</div>
+              </a>
+            </li> -->
+
+            <!-- Components -->
+            <!-- <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Components</span>
+            </li> -->
+            <!-- Cards -->
+            <!-- <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-id"></i>
+                <div data-i18n="Cards">Cards</div>
+                <div class="badge bg-primary rounded-pill ms-auto">6</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="cards-basic.html" class="menu-link">
+                    <div data-i18n="Basic">Basic</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="cards-advance.html" class="menu-link">
+                    <div data-i18n="Advance">Advance</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="cards-statistics.html" class="menu-link">
+                    <div data-i18n="Statistics">Statistics</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="cards-analytics.html" class="menu-link">
+                    <div data-i18n="Analytics">Analytics</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="cards-actions.html" class="menu-link">
+                    <div data-i18n="Actions">Actions</div>
+                  </a>
+                </li>
+              </ul>
+            </li> -->
+            <!-- User interface -->
+            <!-- <li class="menu-item">
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-color-swatch"></i>
+                <div data-i18n="User interface">User interface</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="ui-accordion.html" class="menu-link">
+                    <div data-i18n="Accordion">Accordion</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-alerts.html" class="menu-link">
+                    <div data-i18n="Alerts">Alerts</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-badges.html" class="menu-link">
+                    <div data-i18n="Badges">Badges</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-buttons.html" class="menu-link">
+                    <div data-i18n="Buttons">Buttons</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-carousel.html" class="menu-link">
+                    <div data-i18n="Carousel">Carousel</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-collapse.html" class="menu-link">
+                    <div data-i18n="Collapse">Collapse</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-dropdowns.html" class="menu-link">
+                    <div data-i18n="Dropdowns">Dropdowns</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-footer.html" class="menu-link">
+                    <div data-i18n="Footer">Footer</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-list-groups.html" class="menu-link">
+                    <div data-i18n="List Groups">List groups</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-modals.html" class="menu-link">
+                    <div data-i18n="Modals">Modals</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-navbar.html" class="menu-link">
+                    <div data-i18n="Navbar">Navbar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-offcanvas.html" class="menu-link">
+                    <div data-i18n="Offcanvas">Offcanvas</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-pagination-breadcrumbs.html" class="menu-link">
+                    <div data-i18n="Pagination & Breadcrumbs">Pagination &amp; Breadcrumbs</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-progress.html" class="menu-link">
+                    <div data-i18n="Progress">Progress</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-spinners.html" class="menu-link">
+                    <div data-i18n="Spinners">Spinners</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-tabs-pills.html" class="menu-link">
+                    <div data-i18n="Tabs & Pills">Tabs &amp; Pills</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-toasts.html" class="menu-link">
+                    <div data-i18n="Toasts">Toasts</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-tooltips-popovers.html" class="menu-link">
+                    <div data-i18n="Tooltips & Popovers">Tooltips &amp; popovers</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="ui-typography.html" class="menu-link">
+                    <div data-i18n="Typography">Typography</div>
+                  </a>
+                </li>
+              </ul>
+            </li> -->
+
+            <!-- Extended components -->
+            <!-- <li class="menu-item">
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-components"></i>
+                <div data-i18n="Extended UI">Extended UI</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="extended-ui-avatar.html" class="menu-link">
+                    <div data-i18n="Avatar">Avatar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-blockui.html" class="menu-link">
+                    <div data-i18n="BlockUI">BlockUI</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-drag-and-drop.html" class="menu-link">
+                    <div data-i18n="Drag & Drop">Drag &amp; Drop</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-media-player.html" class="menu-link">
+                    <div data-i18n="Media Player">Media Player</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
+                    <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-star-ratings.html" class="menu-link">
+                    <div data-i18n="Star Ratings">Star Ratings</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-sweetalert2.html" class="menu-link">
+                    <div data-i18n="SweetAlert2">SweetAlert2</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-text-divider.html" class="menu-link">
+                    <div data-i18n="Text Divider">Text Divider</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <div data-i18n="Timeline">Timeline</div>
+                  </a>
+                  <ul class="menu-sub">
+                    <li class="menu-item">
+                      <a href="extended-ui-timeline-basic.html" class="menu-link">
+                        <div data-i18n="Basic">Basic</div>
+                      </a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="extended-ui-timeline-fullscreen.html" class="menu-link">
+                        <div data-i18n="Fullscreen">Fullscreen</div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-tour.html" class="menu-link">
+                    <div data-i18n="Tour">Tour</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-treeview.html" class="menu-link">
+                    <div data-i18n="Treeview">Treeview</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="extended-ui-misc.html" class="menu-link">
+                    <div data-i18n="Miscellaneous">Miscellaneous</div>
+                  </a>
+                </li>
+              </ul>
+            </li> -->
+
+            <!-- Icons -->
+            <!-- <li class="menu-item">
+              <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-brand-tabler"></i>
+                <div data-i18n="Icons">Icons</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="icons-tabler.html" class="menu-link">
+                    <div data-i18n="Tabler">Tabler</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="icons-font-awesome.html" class="menu-link">
+                    <div data-i18n="Fontawesome">Fontawesome</div>
+                  </a>
+                </li>
+              </ul>
+            </li> -->
+
+            <!-- Forms & Tables -->
+            <!-- <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Forms &amp; Tables</span>
+            </li> -->
+            <!-- Forms -->
+            <!-- <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-toggle-left"></i>
+                <div data-i18n="Form Elements">Form Elements</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="forms-basic-inputs.html" class="menu-link">
+                    <div data-i18n="Basic Inputs">Basic Inputs</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-input-groups.html" class="menu-link">
+                    <div data-i18n="Input groups">Input groups</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-custom-options.html" class="menu-link">
+                    <div data-i18n="Custom Options">Custom Options</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-editors.html" class="menu-link">
+                    <div data-i18n="Editors">Editors</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-file-upload.html" class="menu-link">
+                    <div data-i18n="File Upload">File Upload</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-pickers.html" class="menu-link">
+                    <div data-i18n="Pickers">Pickers</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-selects.html" class="menu-link">
+                    <div data-i18n="Select & Tags">Select &amp; Tags</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-sliders.html" class="menu-link">
+                    <div data-i18n="Sliders">Sliders</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-switches.html" class="menu-link">
+                    <div data-i18n="Switches">Switches</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="forms-extras.html" class="menu-link">
+                    <div data-i18n="Extras">Extras</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item active open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-layout-navbar"></i>
+                <div data-i18n="Form Layouts">Form Layouts</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="form-layouts-vertical.html" class="menu-link">
+                    <div data-i18n="Vertical Form">Vertical Form</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="form-layouts-horizontal.html" class="menu-link">
+                    <div data-i18n="Horizontal Form">Horizontal Form</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="form-layouts-sticky.html" class="menu-link">
+                    <div data-i18n="Sticky Actions">Sticky Actions</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-text-wrap-disabled"></i>
+                <div data-i18n="Form Wizard">Form Wizard</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="form-wizard-numbered.html" class="menu-link">
+                    <div data-i18n="Numbered">Numbered</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="form-wizard-icons.html" class="menu-link">
+                    <div data-i18n="Icons">Icons</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="form-validation.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-checkbox"></i>
+                <div data-i18n="Form Validation">Form Validation</div>
+              </a>
+            </li> -->
+            <!-- Tables -->
+            <!-- <li class="menu-item">
+              <a href="tables-basic.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-table"></i>
+                <div data-i18n="Tables">Tables</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-layout-grid"></i>
+                <div data-i18n="Datatables">Datatables</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="tables-datatables-basic.html" class="menu-link">
+                    <div data-i18n="Basic">Basic</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="tables-datatables-advanced.html" class="menu-link">
+                    <div data-i18n="Advanced">Advanced</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="tables-datatables-extensions.html" class="menu-link">
+                    <div data-i18n="Extensions">Extensions</div>
+                  </a>
+                </li>
+              </ul>
+            </li> -->
+
+            <!-- Charts & Maps -->
+            <!-- <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Charts &amp; Maps</span>
+            </li>
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-chart-pie"></i>
+                <div data-i18n="Charts">Charts</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="charts-apex.html" class="menu-link">
+                    <div data-i18n="Apex Charts">Apex Charts</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="charts-chartjs.html" class="menu-link">
+                    <div data-i18n="ChartJS">ChartJS</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item">
+              <a href="maps-leaflet.html" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-map"></i>
+                <div data-i18n="Leaflet Maps">Leaflet Maps</div>
+              </a>
+            </li> -->
+
+            <!-- Misc -->
+            <!-- <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Misc</span>
+            </li>
+            <li class="menu-item">
+              <a href="https://pixinvent.ticksy.com/" target="_blank" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-lifebuoy"></i>
+                <div data-i18n="Support">Support</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a
+                href="https://demos.pixinvent.com/vuexy-html-admin-template/documentation/"
+                target="_blank"
+                class="menu-link">
+                <i class="menu-icon tf-icons ti ti-file-description"></i>
+                <div data-i18n="Documentation">Documentation</div>
+              </a>
+            </li> -->
+          </ul>
+        </aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="ti ti-menu-2 ti-sm"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <!-- Search -->
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item navbar-search-wrapper mb-0">
+                  <a class="nav-item nav-link search-toggler d-flex align-items-center px-0" href="javascript:void(0);">
+                    <i class="ti ti-search ti-md me-2"></i>
+                    <span class="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
+                  </a>
+                </div>
+              </div>
+              <!-- /Search -->
+
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                <!-- Language -->
+                <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <i class="ti ti-language rounded-circle ti-md"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-language="en">
+                        <span class="align-middle">English</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-language="fr">
+                        <span class="align-middle">French</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-language="de">
+                        <span class="align-middle">German</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-language="pt">
+                        <span class="align-middle">Portuguese</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ Language -->
+
+                <!-- Style Switcher -->
+                <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <i class="ti ti-md"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
+                        <span class="align-middle"><i class="ti ti-sun me-2"></i>Light</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
+                        <span class="align-middle"><i class="ti ti-moon me-2"></i>Dark</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
+                        <span class="align-middle"><i class="ti ti-device-desktop me-2"></i>System</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!-- / Style Switcher-->
+
+                <!-- Quick links  -->
+                <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside"
+                    aria-expanded="false">
+                    <i class="ti ti-layout-grid-add ti-md"></i>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-end py-0">
+                    <div class="dropdown-menu-header border-bottom">
+                      <div class="dropdown-header d-flex align-items-center py-3">
+                        <h5 class="text-body mb-0 me-auto">Shortcuts</h5>
+                        <a
+                          href="javascript:void(0)"
+                          class="dropdown-shortcuts-add text-body"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top"
+                          title="Add shortcuts"
+                          ><i class="ti ti-sm ti-apps"></i
+                        ></a>
+                      </div>
+                    </div>
+                    <div class="dropdown-shortcuts-list scrollable-container">
+                      <div class="row row-bordered overflow-visible g-0">
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                            <i class="ti ti-calendar fs-4"></i>
+                          </span>
+                          <a href="app-calendar.html" class="stretched-link">Calendar</a>
+                          <small class="text-muted mb-0">Appointments</small>
+                        </div>
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                            <i class="ti ti-file-invoice fs-4"></i>
+                          </span>
+                          <a href="app-invoice-list.html" class="stretched-link">Invoice App</a>
+                          <small class="text-muted mb-0">Manage Accounts</small>
+                        </div>
+                      </div>
+                      <div class="row row-bordered overflow-visible g-0">
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                            <i class="ti ti-users fs-4"></i>
+                          </span>
+                          <a href="app-user-list.html" class="stretched-link">User App</a>
+                          <small class="text-muted mb-0">Manage Users</small>
+                        </div>
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                            <i class="ti ti-lock fs-4"></i>
+                          </span>
+                          <a href="app-access-roles.html" class="stretched-link">Role Management</a>
+                          <small class="text-muted mb-0">Permission</small>
+                        </div>
+                      </div>
+                      <div class="row row-bordered overflow-visible g-0">
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                            <i class="ti ti-chart-bar fs-4"></i>
+                          </span>
+                          <a href="index.html" class="stretched-link">Dashboard</a>
+                          <small class="text-muted mb-0">User Profile</small>
+                        </div>
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                            <i class="ti ti-settings fs-4"></i>
+                          </span>
+                          <a href="pages-account-settings-account.html" class="stretched-link">Setting</a>
+                          <small class="text-muted mb-0">Account Settings</small>
+                        </div>
+                      </div>
+                      <div class="row row-bordered overflow-visible g-0">
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                            <i class="ti ti-help fs-4"></i>
+                          </span>
+                          <a href="pages-faq.html" class="stretched-link">FAQs</a>
+                          <small class="text-muted mb-0">FAQs & Articles</small>
+                        </div>
+                        <div class="dropdown-shortcuts-item col">
+                          <span class="dropdown-shortcuts-icon rounded-circle mb-2">
+                            <i class="ti ti-square fs-4"></i>
+                          </span>
+                          <a href="modal-examples.html" class="stretched-link">Modals</a>
+                          <small class="text-muted mb-0">Useful Popups</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <!-- Quick links -->
+
+                <!-- Notification -->
+                <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown"
+                    data-bs-auto-close="outside"
+                    aria-expanded="false">
+                    <i class="ti ti-bell ti-md"></i>
+                    <span class="badge bg-danger rounded-pill badge-notifications">5</span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end py-0">
+                    <li class="dropdown-menu-header border-bottom">
+                      <div class="dropdown-header d-flex align-items-center py-3">
+                        <h5 class="text-body mb-0 me-auto">Notification</h5>
+                        <a
+                          href="javascript:void(0)"
+                          class="dropdown-notifications-all text-body"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top"
+                          title="Mark all as read"
+                          ><i class="ti ti-mail-opened fs-4"></i
+                        ></a>
+                      </div>
+                    </li>
+                    <li class="dropdown-notifications-list scrollable-container">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1">Congratulation Lettie 🎉</h6>
+                              <p class="mb-0">Won the monthly best seller gold badge</p>
+                              <small class="text-muted">1h ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="ti ti-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <span class="avatar-initial rounded-circle bg-label-danger">CF</span>
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1">Charles Franklin</h6>
+                              <p class="mb-0">Accepted your connection</p>
+                              <small class="text-muted">12hr ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="ti ti-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <img src="../../assets/img/avatars/2.png" alt class="h-auto rounded-circle" />
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1">New Message ✉️</h6>
+                              <p class="mb-0">You have new message from Natalie</p>
+                              <small class="text-muted">1h ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="ti ti-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <span class="avatar-initial rounded-circle bg-label-success"
+                                  ><i class="ti ti-shopping-cart"></i
+                                ></span>
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1">Whoo! You have new order 🛒</h6>
+                              <p class="mb-0">ACME Inc. made new order $1,154</p>
+                              <small class="text-muted">1 day ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="ti ti-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <img src="../../assets/img/avatars/9.png" alt class="h-auto rounded-circle" />
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1">Application has been approved 🚀</h6>
+                              <p class="mb-0">Your ABC project application has been approved.</p>
+                              <small class="text-muted">2 days ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="ti ti-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <span class="avatar-initial rounded-circle bg-label-success"
+                                  ><i class="ti ti-chart-pie"></i
+                                ></span>
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1">Monthly report is generated</h6>
+                              <p class="mb-0">July monthly financial report is generated</p>
+                              <small class="text-muted">3 days ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="ti ti-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <img src="../../assets/img/avatars/5.png" alt class="h-auto rounded-circle" />
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1">Send connection request</h6>
+                              <p class="mb-0">Peter sent you connection request</p>
+                              <small class="text-muted">4 days ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="ti ti-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <img src="../../assets/img/avatars/6.png" alt class="h-auto rounded-circle" />
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1">New message from Jane</h6>
+                              <p class="mb-0">Your have new message from Jane</p>
+                              <small class="text-muted">5 days ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="ti ti-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
+                          <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                              <div class="avatar">
+                                <span class="avatar-initial rounded-circle bg-label-warning"
+                                  ><i class="ti ti-alert-triangle"></i
+                                ></span>
+                              </div>
+                            </div>
+                            <div class="flex-grow-1">
+                              <h6 class="mb-1">CPU is running high</h6>
+                              <p class="mb-0">CPU Utilization Percent is currently at 88.63%,</p>
+                              <small class="text-muted">5 days ago</small>
+                            </div>
+                            <div class="flex-shrink-0 dropdown-notifications-actions">
+                              <a href="javascript:void(0)" class="dropdown-notifications-read"
+                                ><span class="badge badge-dot"></span
+                              ></a>
+                              <a href="javascript:void(0)" class="dropdown-notifications-archive"
+                                ><span class="ti ti-x"></span
+                              ></a>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="dropdown-menu-footer border-top">
+                      <a
+                        href="javascript:void(0);"
+                        class="dropdown-item d-flex justify-content-center text-primary p-2 h-px-40 mb-1 align-items-center">
+                        View all notifications
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ Notification -->
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="pages-account-settings-account.html">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="../../assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <span class="fw-medium d-block">John Doe</span>
+                            <small class="text-muted">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-profile-user.html">
+                        <i class="ti ti-user-check me-2 ti-sm"></i>
+                        <span class="align-middle">My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-account-settings-account.html">
+                        <i class="ti ti-settings me-2 ti-sm"></i>
+                        <span class="align-middle">Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-account-settings-billing.html">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
+                          <span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20"
+                            >2</span
+                          >
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-faq.html">
+                        <i class="ti ti-help me-2 ti-sm"></i>
+                        <span class="align-middle">FAQ</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-pricing.html">
+                        <i class="ti ti-currency-dollar me-2 ti-sm"></i>
+                        <span class="align-middle">Pricing</span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                        <i class="ti ti-logout me-2 ti-sm"></i>
+                        <span class="align-middle">Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+
+            <!-- Search Small Screens -->
+            <div class="navbar-search-wrapper search-input-wrapper d-none">
+              <input
+                type="text"
+                class="form-control search-input container-xxl border-0"
+                placeholder="Search..."
+                aria-label="Search..." />
+              <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
+            </div>
+          </nav>
+
+          <!-- / Navbar -->
+
+          <!-- / steps  -->
+
+          <!-- / steps  -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- Basic Layout -->
+              <!-- Multi Column with Form Separator -->
+              <div id="example-basic" class="mb-5">
+                <ul class="steps">
+                  <li class="step step-active" id="step1">
+                    <div class="step-content" style="padding-right: 3rem;">
+                      <span class="step-circle">1</span>
+                      <span class="step-text content" style="max-width: 100px;min-width: 90px;">填寫基本資料</span>
+                    </div>
+                  </li>
+                  <li class="step" id="step2">
+                    <div class="step-content" style="padding-right: 3rem;">
+                      <span class="step-circle">2</span>
+                      <span class="step-text content">評分計算中</span>
+                    </div>
+                  </li>
+                  <li class="step" id="step3">
+                    <div class="step-content" style="padding-right: 3rem;">
+                      <span class="step-circle">3</span>
+                      <span class="step-text content">評分結果</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="card mb-4">
+                <div class="col-md-12" id="pageOne">
+                  <form action="" class="card-body" id="formInfo">
+                    <hr class="my-4 mx-n4" />
+                    <h6>填寫基本資料</h6>
+                    <h6>請填寫以下欄位資訊</h6>
+                    <div class="row g-3">
+                      <div class="col-md-4">
+                        <label class="form-label" for="plateNo">車牌號碼</label>
+                        <input type="text" id="plateNo" name="plateNo" class="form-control" placeholder="ABC-1234" />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label" for="name">姓名</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="金城武" />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label" for="idNo">身分證字號</label>
+                        <input type="text" id="idNo" name="idNo" class="form-control" placeholder="A123456789" />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label" for="birthday">出生日期</label>
+                        <!-- <input type="date" id="birthday" name="birthday" placeholder="0790714"> -->
+                        <input
+                          type="text"
+                          id="birthday"
+                          name="birthday"
+                          class="form-control dob-picker"
+                          max="2000-08-13"
+                          placeholder="0790714" />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label" for="phoneNo">電話</label>
+                        <input type="text" id="phoneNo" name="phoneNo" class="form-control" placeholder="0999999999" />
+                      </div>
+                      <div class="col-md-4">
+                        <small class="text-light fw-medium d-block">婚姻</small>
+                        <div class="form-check form-check-inline mt-3">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="married"
+                            id="inlineRadio1"
+                            value="true" 
+                            checked="checked"/>
+                          <label class="form-check-label" for="inlineRadio1">已婚</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="married"
+                            id="inlineRadio2"
+                            value="false" />
+                          <label class="form-check-label" for="inlineRadio2">未婚</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label" for="applyTWYMD">發證日期</label>
+                        <input
+                          type="text"
+                          id="applyTWYMD"
+                          name="applyTWYMD"
+                          class="form-control dob-picker"
+                          placeholder="1120209" />
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label" for="siteId">換證地點</label>
+                        <select id="siteId" name="siteId" class="select2 form-select" data-allow-clear="true">
+                          <option value="">Select</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <small class="text-light fw-medium d-block">領補換類別</small>
+                        <div class="form-check form-check-inline mt-3">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="applyReason"
+                            id="applyReason1"
+                            value="1" 
+                            checked="checked"/>
+                          <label class="form-check-label" for="inlineRadio1">初發</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="applyReason"
+                            id="applyReason2"
+                            value="2" />
+                          <label class="form-check-label" for="inlineRadio2">補發</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="applyReason"
+                            id="applyReason3"
+                            value="3" />
+                          <label class="form-check-label" for="inlineRadio2">換發</label>
+                        </div>
+                      </div>
+                    <div class="pt-4">
+                      <button type="button" id="forminfoButton" class="btn btn-primary me-sm-3 me-1">查詢</button>
+                      <!-- <button type="reset" class="btn btn-label-secondary">Cancel</button> -->
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-md-12" id="pageTwo">
+                <div class="col-md-12">
+                  <img src="../../assets/img/pages/page3.png" class="img-fluid  mx-auto d-block imgSetup"  alt="Responsive image">
+                </div>
+                <div class="pt-4 m-5">
+                  <button type="button" id="reSearchOne" class="btn btn-primary me-sm-3 me-1">重新計算</button>
+                </div>
+              </div>
+              <div class="col-md-12" id="pageThree">
+                <div class="row align-items-center textSetup">
+                  <div class="col">
+                    <div>評分結果</div>
+                    <div>
+                      <div class="row justify-content-center">
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                          <div class="row">
+                            <div class="col-6">
+                              姓名:
+                            </div>
+                            <div class="col-6" id="responseName">
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                          <div class="row">
+                            <div class="col-6">
+                              廠牌:
+                            </div>
+                            <div class="col-6" id="brandName">
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                          <div class="row">
+                            <div class="col-6">
+                              動擔設定:
+                            </div>
+                            <div class="col-6" id="chattel">
+                              有動擔???
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                          <div class="row">
+                            <div class="col-6">
+                              身分證:
+                            </div>
+                            <div class="col-6" id="idNoRes">
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                          <div class="row">
+                            <div class="col-6">
+                              型式:
+                            </div>
+                            <div class="col-6" id="modelName">
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                          <div class="row">
+                            <div class="col-6">
+                              信用評分:
+                            </div>
+                            <div class="col-6" id="creditScore">
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                          <div class="row">
+                            <div class="col-6">
+                              手機:
+                            </div>
+                            <div class="col-6" id="phone">
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                          <div class="row">
+                            <div class="col-6">
+                              排氣量:
+                            </div>
+                            <div class="col-6" id="exhaust">
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                          <div class="row">
+                            <div class="col-6">
+                              車牌號碼:
+                            </div>
+                            <div class="col-6" id="PlateNumber">
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-12">
+                          <div class="row">
+                            <div class="col-6">
+                              出廠年月:
+                            </div>
+                            <div class="col-6" id="manufactureDate">
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col">
+                    <img src="../../assets/img/pages/page2.png" class="img-fluid imgSetupTwo" alt="Responsive image">
+                  </div> -->
+                </div>
+                <div class="col mx-auto m-5">
+                  <button type="submit" id="reSearchTwo" onclick="deleteItems()" class="btn btn-primary me-sm-3 me-1">重新計算</button>
+                </div>
+              </div>
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/node-waves/node-waves.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+    <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="../../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="../../assets/vendor/libs/cleavejs/cleave-phone.js"></script>
+    <script src="../../assets/vendor/libs/moment/moment.js"></script>
+    <script src="../../assets/vendor/libs/flatpickr/flatpickr.js"></script>
+    <script src="../../assets/vendor/libs/select2/select2.js"></script>
+
+    <!-- Main JS -->
+    <script src="../../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="../../assets/js/form-layouts.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/js/jquery.smartWizard.min.js" type="text/javascript"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.zh-TW.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script> -->
+    <script>
+      // var responseDataTid ;
+      const endpointTwo = 'http://10.0.5.90:8082/score/g/v1/score';
+      var stop ;
+      var keyExistOrNot;
+
+      async function ajaxSeries(formNewJson){
+        console.log("ajaxSeries formNewJson :" + formNewJson );
+        console.log("JSON.stringify(ajaxSeries formNewJson) :" + JSON.stringify(formNewJson) );
+        try {
+          // await ajaxOne(formNewJson);
+          let responseDataPromise = await ajaxOne(formNewJson);
+          console.log("responseDataPromise :" + responseDataPromise );
+          console.log("JSON.stringify(responseDataPromise) :" + JSON.stringify(responseDataPromise) );
+          console.log("await ajaxOne() finish");
+          stop = setInterval(function () {
+            ajaxTwo(responseDataPromise)
+          }, 2000);
+          
+          // await ajaxTwo(responseDataPromise);
+        } catch (error) {
+          console.log("ajax() error :" + error );
+        }
+      }
+
+      function ajaxOne(formNewJson){
+        return new Promise((resolve,reject) => {
+          $.ajax({
+              type: 'POST',
+              url: `${endpointTwo}`,
+              contentType: 'application/json',
+              dataType: 'json',
+              data: JSON.stringify(formNewJson),
+              success: function (response) {
+                alert("response success");
+                console.log("ajaxOne response:" + response );
+                console.log("JSON.stringify(ajaxOne response):" + JSON.stringify(response) );
+                responseDataTid = response.data.tid;
+                
+                console.log("responseDataTid 222:" + responseDataTid );
+                console.log("JSON.stringify(responseDataTid) 222:" + JSON.stringify(responseDataTid) );
+                // localStorage.setItem('form',JSON.stringify(formNewJson));
+                let tidAndScoreState ={
+                  "tid": response.data.tid,
+                  "scoreState": response.data.scoreState
+                }
+                localStorage.setItem('checkKey',JSON.stringify(tidAndScoreState));
+                console.log("localStorage checkKey 寫入" );
+                // localStorage.setItem('scoreState',response.data.scoreState);
+                $('#pageOne').hide();
+                $('.img-fluid').attr('id','shakeImg');
+                resolve(responseDataTid);
+                // return responseDataTid;
+                // $('#pageTwo').hide();
+                // $('#pageThree').show();
+                // $('#step3').addClass("step-active");
+              },
+              error: function (xhr, XMLHttpRequest, error) {
+                  // xhr.responseText ={"timestamp":"2023-02-15T07:16:49.172+00:00","status":404,"error":"Not Found","message":"","path":"/api/v1/scorecard/search"}
+                  // alert("目前系統忙碌中: " + xhr.status + " " + xhr.statusText);
+
+                  let xhrResponseText = xhr.responseText;
+
+                  if (xhrResponseText == "" || xhrResponseText == undefined || xhrResponseText == null) {
+                      alert("伺服器忙碌中....請重新查詢");
+                      console.log("error 222:" + error );
+                      console.log("JSON.stringify(error) 222:" + JSON.stringify(error) );
+                      reject();
+                  } else {
+                      let xhrResponseTextParse = JSON.parse(xhrResponseText);
+                      let xhrResponseTextParseStatus = xhrResponseTextParse.status;
+                      if (xhrResponseTextParse.statusCode == 400 ) {
+                          alert("400 伺服器忙碌中....請重新查詢" + xhrResponseTextParse.message );
+                          reject();
+                      } 
+                      // else if (xhrResponseTextParseStatus == "400") {
+                      //     alert("400 伺服器忙碌中....請重新查詢");
+                      //     console.log("xhrResponseTextParseStatus 400:" + xhrResponseTextParseStatuserror );
+                      //     console.log("JSON.stringify(xhrResponseTextParseStatus) 400:" + JSON.stringify(xhrResponseTextParseStatus) );
+                      //     reject();
+                      // }
+                      // else if (xhrResponseTextParseStatus == "500") {
+                      //     alert("500 伺服器忙碌中....請重新查詢");
+                      //     reject();
+                      // }
+                      // else {
+                      //     alert("伺服器忙碌中....請重新查詢");
+                      //     reject();
+                      // }
+                  }
+              }
+            });
+        })
+      }
+
+      function ajaxTwo(value){
+        return new Promise((resolve,reject) => {
+          const endpointThree = 'http://10.0.5.90:8082/score/g/v1/score?tid=' + value ;
+          console.log("ajaxTwo first--------------" );
+          console.log("endpointThree:" + endpointThree );
+          console.log("ajaxOne value :" + value );
+          console.log("JSON.stringify(ajaxOne value) :" + JSON.stringify(value) );
+          $.ajax({
+              type: 'GET',
+              url: `${endpointThree}`,
+              contentType: 'application/json',
+              dataType: 'json',
+              // data: JSON.stringify(formNewJson),
+              success: function (response) {
+                // alert("response ajaxTwo success");
+                console.log("response ajaxTwo success-----------" );
+                console.log("response  ajaxTwo:" + response );
+                console.log("JSON.stringify(response  ajaxTwo):" + JSON.stringify(response) );
+                
+                // const aaa={"systemTime":1692681563142,"statusCode":0,"message":"成功",
+                // "data":{"tid":"20230822-750f332f","scoreState":"DONE",
+                // "scoreGResult":{"name":"aaa","idNo":"A172197884","phone":"0990000000","score":326,"chattel":false},
+                // "listCarInfo":[{"queryPlateNumber":"HAA-2222","currentPlateNumber":"AAA-2222",
+                // "previousPlateNumber":"不顯示","licenseValidDate":null,"licenseStatus":"外區繳銷重領",
+                // "statusDate":"1011130","vehicleType":"自用小客車","fuelType":"汽油",
+                // "brandName":"Mlercedes-Benz","modelName":"G55AMG","manufactureDate":"201202",
+                // "color":"灰","style":"廂式HID頭燈","exhaust":"5439cc",
+                // "currentAuthorityUnit":"臺北市區監理所","issuedDate":"1011130",
+                // "originalIssuedDate":"1011321","replacementDate":"1041210(1011221補)",
+                // "nextInspectionDate":"1121130","inspectionExtensionApplication":"無",
+                // "compulsoryInsuranceEndDate":null,"compulsoryInsuranceCount":"0","suspensionEndDate":null,
+                // "prohibitionChange":"0","environmentalViolation":"不顯示","compulsoryInsuranceViolation":"不顯示",
+                // "highwayLawArticle75Violation":"不顯示","unsettledTrafficViolations":"不顯示不顯示",
+                // "licenseTaxArrears":null,"licenseTaxViolation":"不顯示不顯示","fuelFeeArrears":"不顯示.不顯示"}]}};
+
+                console.log("response.data.scoreState == DONE :" + response.data.scoreState  );
+                console.log("typeof(response.data.scoreState) :" + typeof(response.data.scoreState)  );
+                
+                
+                console.log( response.data.scoreState == "DONE"  );
+                if(response.data.scoreState == "DONE"){
+                  console.log( "Ture 停下 clearInterval(stop)" );
+                  clearInterval(stop);
+                  $('#pageOne').hide();
+                  $('#pageTwo').hide();
+                  console.log( "response.data.scoreGResult.idNo :" + response.data.scoreGResult.idNo );
+                  $('#responseName').text(response.data.scoreGResult.name);
+                  $('#brandName').text(response.data.listCarInfo[0].brandName);
+                  console.log( "response.data.scoreGResult.chattel :" + response.data.scoreGResult.chattel );
+                  let movableProperty = (response.data.scoreGResult.chattel == true ) ? "有動擔":"沒有動擔";
+                  console.log( "typeof(movableProperty) :" + typeof(movableProperty) );
+                  
+                  
+                  $('#chattel').text(movableProperty);
+                  $('#idNoRes').text(response.data.scoreGResult.idNo);
+                  $('#modelName').text(response.data.listCarInfo[0].modelName);
+                  console.log( "response.data.scoreGResult.score :" + response.data.scoreGResult.score );
+                  $('#creditScore').text(response.data.scoreGResult.score);
+                  $('#phone').text(response.data.scoreGResult.phone);
+                  $('#exhaust').text(response.data.listCarInfo[0].exhaust);
+                  $('#PlateNumber').text(response.data.listCarInfo[0].queryPlateNumber);
+                  $('#manufactureDate').text(response.data.listCarInfo[0].manufactureDate);
+                  $('#pageThree').show();
+                  $('#step3').addClass("step-active");
+                }
+                if(response.data.scoreState == "FAIL"){
+                  console.log( "response.data.scoreState == FAIL :" + response.data.scoreState );
+                  deleteItems();
+                  resetPageThreeValue();
+                  $('#pageOne').hide();
+                  $('#pageTwo').hide();
+                  $('#pageThree').show();
+                }
+              },
+              error: function (xhr, XMLHttpRequest, error) {
+                  // xhr.responseText ={"timestamp":"2023-02-15T07:16:49.172+00:00","status":404,"error":"Not Found","message":"","path":"/api/v1/scorecard/search"}
+                  // alert("目前系統忙碌中: " + xhr.status + " " + xhr.statusText);
+
+                  let xhrResponseText = xhr.responseText;
+                  // console.log("typeof(xhrResponseText) =" + typeof (xhrResponseText));
+                  if (xhrResponseText == "" || xhrResponseText == undefined || xhrResponseText == null) {
+                      alert("ajaxTwo 伺服器忙碌中....請重新查詢");
+                      $('#pageOne').hide();
+                      $('#pageTwo').hide();
+                      $('#pageThree').show();
+                      // alert("伺服器忙碌中....");
+                  } else {
+                      let xhrResponseTextParse = JSON.parse(xhrResponseText);
+                      let xhrResponseTextParseStatus = xhrResponseTextParse.status;
+                      if (xhrResponseTextParse.statusCode == 400 ) {
+                          alert("400 伺服器忙碌中....請重新查詢" + xhrResponseTextParse.message );
+                          $('#pageOne').hide();
+                          $('#pageTwo').hide();
+                          $('#pageThree').show();
+                          reject();
+                      } 
+                  }
+              }
+            });
+        })
+      }
+
+      function deleteItems() {
+        // Clear localStorage items 
+        localStorage.clear();
+        document.getElementById("formInfo").reset();
+      }
+
+      function checkLocalStorage() {
+        keyExistOrNot = localStorage.getItem("checkKey");
+        console.log("keyExistOrNot :" + keyExistOrNot );
+        console.log("JSON.stringify(keyExistOrNot) :" + JSON.stringify(keyExistOrNot) );
+        return keyExistOrNot;
+      }
+
+      function resetPageThreeValue() {
+                  $('#chattel').text("");
+                  $('#idNoRes').text("");
+                  $('#modelName').text("");
+                  $('#creditScore').text("");
+                  $('#phone').text("");
+                  $('#exhaust').text("");
+                  $('#PlateNumber').text("");
+                  $('#manufactureDate').text("");
+                  $('#pageThree').show();
+                  $('#step3').removeClass('step-active');
+                  alert("查無此資料，請重新查詢" );
+      }
+
+      function GG() {
+        $('#pageOne').hide();
+      }
+
+      $(document).ready(function () {
+        //近來先打API，取換證地點和領補換類別和狀態
+        const endpointOne = 'http://10.0.5.90/gocar_api/public/score/g/v1/scope';
+        let siteIdMapData ;
+        $('#pageOne').show();
+        $('#pageTwo').hide();
+        
+        // deleteItems();
+        checkLocalStorage();
+        if( !keyExistOrNot == null || !keyExistOrNot == "" ){
+          
+          console.log("!keyExistOrNot == null || !keyExistOrNot == ");
+          console.log("keyExistOrNot :" + keyExistOrNot);
+          console.log("keyExistOrNot.tid :" + keyExistOrNot.tid);
+          
+          console.log("JSON.stringify(keyExistOrNot) :" + JSON.stringify(keyExistOrNot));
+          console.log("typeof(keyExistOrNot) :" + typeof(keyExistOrNot));
+          
+          let parseLocalStorage = JSON.parse(keyExistOrNot);
+
+          stop = setInterval(function () {
+            ajaxTwo(parseLocalStorage.tid);
+          }, 1000);
+          setTimeout(function () {
+            GG();
+          },0)
+          $('#pageTwo').show();
+          $('#step2').addClass("step-active");
+        }
+
+
+
+        // console.log("responseDataTid 111:" + responseDataTid );
+        // console.log("JSON.stringify(responseDataTid) 111:" + JSON.stringify(responseDataTid) );
+        $.ajax({
+                    type: 'GET',
+                    // url: '',
+                    url: `${endpointOne}`,
+                    dataType: 'json',
+                    success: function (response) {
+                      console.log("response :" + response );
+                      console.log("JSON.stringify(response) :" + JSON.stringify(response) );
+                      siteIdMapData = response.data.siteIdMap ;
+                      console.log("siteIdMapData :" + siteIdMapData );
+                      console.log("JSON.stringify(siteIdMapData) :" + JSON.stringify(siteIdMapData) );
+
+                      //for生成換證地點option
+                      $.each(siteIdMapData,function(key,value){
+                        $('#siteId').append('<option value="'+key+'">'+value+'</option>')
+                      })
+                      // JSON.stringify(response) :
+                      // {"systemTime":1692255980502,"statusCode":0,"message":"成功",
+                      // "data":{"siteIdMap":{"10001":"北縣","10002":"宜縣","10003":"桃縣","10004":"竹縣","10005":"苗縣","10006":"中縣","10007":"彰縣","10008":"投縣","10009":"雲縣","10010":"嘉縣","10011":"南縣","10012":"高縣","10013":"屏縣","10014":"東縣","10015":"花縣","10016":"澎縣","10017":"基市","10018":"竹市","10020":"嘉市","63000":"北市","64000":"高市","65000":"新北市","66000":"中市","67000":"南市","68000":"桃市","09007":"連江","09020":"金門"}
+                      // ,"scoreStateMap":{"0":"ONGOING","1":"DONE","99":"FAIL","-1":"UNSTART"}
+                      // ,"applyReasonMap":{"1":"初發","2":"補發","3":"換發"}}}
+                    },
+                    error: function (xhr, XMLHttpRequest, error) {
+                        // xhr.responseText ={"timestamp":"2023-02-15T07:16:49.172+00:00","status":404,"error":"Not Found","message":"","path":"/api/v1/scorecard/search"}
+                        // alert("目前系統忙碌中: " + xhr.status + " " + xhr.statusText);
+                        let xhrResponseText = xhr.responseText;
+                        // console.log("typeof(xhrResponseText) =" + typeof (xhrResponseText));
+                        if (xhrResponseText == "" || xhrResponseText == undefined || xhrResponseText == null) {
+                            alert("初始化中....");
+                        } else {
+                            let xhrResponseTextParse = JSON.parse(xhrResponseText);
+                            let xhrResponseTextParseStatus = xhrResponseTextParse.status;
+                            if (xhrResponseTextParseStatus == "404") {
+                                alert("伺服器忙碌中");
+                            } else if (xhrResponseTextParseStatus == "500") {
+                                alert("伺服器忙碌中");
+                            }
+                            else {
+                                alert("伺服器忙碌中");
+                            }
+                        }
+                    }
+          });
+
+        /*declaring outbound datepicker*/
+        $("#birthday").flatpickr(
+          {
+            altInput: true,
+            altFormat: "Y-d-m",
+            dateFormat: "Y-d-m",
+            disableMobile: "true",
+            minDate: new Date().fp_incr(-36500),
+            // maxDate: "2015-12-31",
+            maxDate: new Date().fp_incr(-6570),
+            // defaultDate: "today",
+            /* setting initial date of return picker to the one selected in 
+            outbound*/
+            // onChange: function (dateStr, dateObj) {
+            //   FLATPICKER_RITORNO.set("minDate", dateObj);
+            //   FLATPICKER_RITORNO.setDate(dateObj);
+            // }
+          });
+        
+        // $('#pageOne').hide();
+        $('#pageThree').hide();
+
+        //pageTwo重新查詢
+        $('#reSearchOne').on('click',function(){
+          $('#pageOne').show();
+          $('#pageTwo').hide();
+          $('#pageThree').hide();
+          $('#step2').removeClass('step-active');
+          $('#step3').removeClass('step-active');
+        })
+        //pageThree重新查詢
+        $('#reSearchTwo').on('click',function(){
+          $('#pageOne').show();
+          $('#pageTwo').hide();
+          $('#pageThree').hide();
+          $('#step2').removeClass('step-active');
+          $('#step3').removeClass('step-active');
+        })
+
+
+        
+        //第一次查詢submit
+        $('#forminfoButton').on('click',function(){
+          let plateNo = $('#plateNo').val();
+          let name = $('#name').val();
+          let idNo = $('#idNo').val();
+          let birthday = $('#birthday').val();
+          let phoneNo = $('#phoneNo').val();
+          let married = $('input[name=married]:checked').val();
+          let marriedBoolean =  JSON.parse(married.toLowerCase());
+          console.log("marriedBoolean:" + marriedBoolean );
+          console.log("JSON.stringify(marriedBoolean):" + JSON.stringify(marriedBoolean) );
+          let applyTWYMD = $('#applyTWYMD').val();
+          let siteId = $('#siteId').val();
+          let siteIdInt = parseInt(siteId);
+          let applyReason = $('input[name=applyReason]:checked').val();
+          let applyReasonInt = parseInt(applyReason);
+          // let applyReason = $('#applyReason').val();
+          // let married = $('#married').val();
+          console.log("applyReason:" + applyReason + " married:" + married);
+          console.log("idNo:" + idNo + " name:" + name + " plateNo:" + plateNo+ " applyTWYMD:" + applyTWYMD+ " siteId:" + siteId+ "phoneNo:" + phoneNo+ "birthday:" + birthday);
+          if( plateNo === '' ) return alert("請確認您的車牌號碼");
+          if( name === '' ) return alert("請確認您的姓名");
+          let idNoValueResult = /^[A-Z]\d{9}$/.test(idNo);
+          if (!idNoValueResult || idNo === "")  return alert('請確認您的身分證號');
+          if( birthday === '' ) return alert("請確認您的生日");
+          let phoneNoResult = /^09\d{8}$/.test(phoneNo);
+          if (!phoneNoResult || phoneNo === "")  return alert('請確認您的電話');
+          let birthdayTWClander = westernToTaiwanCalender(birthday);
+          console.log("typeof(birthdayTWClander):" + typeof(birthdayTWClander) );
+          console.log("birthdayTWClander:" + birthdayTWClander );
+          if( applyTWYMD === '' ) return alert("請確認您的發證日期");
+          let applyTWYMDTWClander = westernToTaiwanCalender(applyTWYMD);
+          let applyTWYMDTWClanderInt =parseInt(applyTWYMDTWClander);
+          console.log("typeof(applyTWYMDTWClanderInt):" + typeof(applyTWYMDTWClanderInt) );
+          console.log("applyTWYMDTWClanderInt:" + applyTWYMDTWClanderInt );
+          console.log("typeof(applyTWYMDTWClander):" + typeof(applyTWYMDTWClander) );
+          console.log("applyTWYMDTWClander:" + applyTWYMDTWClander );
+          if($('#siteId').val()==''){
+            alert('請選擇換證地點');
+            return false;
+          }
+          let formNewJson = 
+                {
+                  "applyDate": applyTWYMDTWClanderInt,
+                  "applyReason": applyReasonInt,
+                  "birthday": birthdayTWClander,
+                  "idNo": idNo,
+                  "married": marriedBoolean,
+                  "name": name,
+                  "phone": phoneNo,
+                  "plateNo": plateNo,
+                  "siteId": siteIdInt
+                };
+          console.log("formNewJson:" + formNewJson );
+          console.log("JSON.stringify(formNewJson):" + JSON.stringify(formNewJson) );
+          // JSON.stringify(formNewJson):
+          // {"applyDate":1120818,"applyReason":1,"birthday":"1120818",
+          // "idNo":"F130925123","married":true,"name":"周亞希","phoneNo":"0990000000",
+          // "plateNo":"AAA-2222","siteId":10003}
+
+          // var formInfo = $('form').serialize();
+          // var formInfoArray = $('#formInfo').serializeArray();
+
+          ajaxSeries(formNewJson);
+
+          // ajaxSeries(formNewJson).then((response) =>{
+          //   console.log("response :" + response );
+          //   console.log("JSON.stringify(response) :" + JSON.stringify(response) );
+          //   console.log("await ajaxOne() finish");
+          // })
+
+          $('#step2').addClass("step-active");
+          $('#pageOne').hide();
+          $('#pageTwo').show();
+          
+          
+          // $('#step2').addClass("step-success");
+
+      });
+        
+
+      })
+    </script>
+  </body>
+</html>
