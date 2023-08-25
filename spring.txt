@@ -1,0 +1,11 @@
+d:
+cd target
+java -jar scorecard-api-0.0.1-SNAPSHOT.jar
+
+
+
+ctrl+c  停止SERVER
+
+
+
+
